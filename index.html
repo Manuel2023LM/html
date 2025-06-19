@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CN | Marketplace</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: black;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    header {
+      height: 100vh;
+      background: linear-gradient(to bottom right, #001f3f, #000);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 64px;
+      font-weight: 900;
+      color: white;
+      letter-spacing: 2px;
+    }
+
+    header h2 {
+      font-size: 24px;
+      color: #aaa;
+      margin-top: 10px;
+    }
+
+    .geometric {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: #8b0000;
+      opacity: 0.3;
+      transform: rotate(45deg);
+      border-radius: 10px;
+    }
+
+    .geo1 { top: 20px; left: 20px; }
+    .geo2 { bottom: 50px; right: 60px; width: 80px; height: 80px; }
+    .geo3 { top: 200px; left: 70%; }
+
+    .brand {
+      font-size: 100px;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 10px;
+      margin-top: 30px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background-color: #111;
+      padding: 15px 0;
+    }
+
+    nav a {
+      color: #00aaff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .decor-line {
+      height: 5px;
+      background: linear-gradient(to right, red, blue);
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .titulo-seccion {
+      text-align: center;
+      font-size: 32px;
+      margin: 60px 0 30px;
+      color: #00aaff;
+    }
+
+    .productos, .agregar-producto, .empleos, .publicar {
+      padding: 40px 20px;
+      background-color: #000;
+    }
+
+    .contenedor-productos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .producto {
+      background-color: #111;
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 0 10px #000;
+      transition: transform 0.3s ease;
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+    }
+
+    .producto img {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    .producto h3 {
+      margin: 15px 0 10px;
+      color: #fff;
+    }
+
+    .producto p {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .precio {
+      display: block;
+      margin: 10px 0;
+      font-size: 18px;
+      color: red;
+    }
+
+    .producto button {
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+    }
+
+    .producto button:hover {
+      background-color: #0077cc;
+    }
+
+    .formulario-box form,
+    .agregar-producto form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .formulario-box input,
+    .formulario-box button,
+    .agregar-producto input,
+    .agregar-producto button {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .formulario-box {
+      background-color: #000;
+      border: 2px solid #8b0000;
+      padding: 20px;
+      border-radius: 10px;
+      width: 350px;
+    }
+
+    .formularios-publicar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .empleo {
+      background-color: #111;
+      color: white;
+      padding: 20px;
+      border-left: 5px solid red;
+      border-radius: 10px;
+      width: 300px;
+      text-align: left;
+    }
+
+    .empleo button {
+      margin-top: 10px;
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">CN</div>
+    <h1>Tu espacio para vender, contratar y crecer</h1>
+    <h2>Productos, servicios y empleos en un solo lugar</h2>
+    <div class="geometric geo1"></div>
+    <div class="geometric geo2"></div>
+    <div class="geometric geo3"></div>
+  </header>
+
+  <nav>
+    <a href="#productos">Productos</a>
+    <a href="#empleos">Empleos</a>
+    <a href="#publicar">Publicar</a>
+  </nav>
+
+  <div class="decor-line"></div>
+
+  <section id="productos" class="productos">
+    <h2 class="titulo-seccion">Productos destacados</h2>
+    <div id="contenedor-productos" class="contenedor-productos"></div>
+  </section>
+
+  <section class="agregar-producto">
+    <h2 class="titulo-seccion">Publicar nuevo producto</h2>
+    <form id="formulario-producto">
+      <input type="text" id="nombre" placeholder="Nombre del producto" required>
+      <input type="text" id="descripcion" placeholder="Descripción" required>
+      <input type="number" id="precio" placeholder="Precio" required>
+      <input type="url" id="imagen" placeholder="URL de la imagen" required>
+      <button type="submit">Agregar producto</button>
+    </form>
+  </section>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CN | Marketplace</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: black;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    header {
+      height: 100vh;
+      background: linear-gradient(to bottom right, #001f3f, #000);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header h1 {
+      font-size: 64px;
+      font-weight: 900;
+      color: white;
+      letter-spacing: 2px;
+    }
+
+    header h2 {
+      font-size: 24px;
+      color: #aaa;
+      margin-top: 10px;
+    }
+
+    .geometric {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: #8b0000;
+      opacity: 0.3;
+      transform: rotate(45deg);
+      border-radius: 10px;
+    }
+
+    .geo1 { top: 20px; left: 20px; }
+    .geo2 { bottom: 50px; right: 60px; width: 80px; height: 80px; }
+    .geo3 { top: 200px; left: 70%; }
+
+    .brand {
+      font-size: 100px;
+      color: white;
+      font-weight: bold;
+      letter-spacing: 10px;
+      margin-top: 30px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      background-color: #111;
+      padding: 15px 0;
+    }
+
+    nav a {
+      color: #00aaff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    .decor-line {
+      height: 5px;
+      background: linear-gradient(to right, red, blue);
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .titulo-seccion {
+      text-align: center;
+      font-size: 32px;
+      margin: 60px 0 30px;
+      color: #00aaff;
+    }
+
+    .productos, .agregar-producto, .empleos, .publicar, .servicios-publicados {
+      padding: 40px 20px;
+      background-color: #000;
+    }
+
+    .contenedor-productos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .producto {
+      background-color: #111;
+      border-radius: 10px;
+      padding: 20px;
+      width: 300px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 0 10px #000;
+      transition: transform 0.3s ease;
+    }
+
+    .producto:hover {
+      transform: translateY(-5px);
+    }
+
+    .producto img {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    .producto h3 {
+      margin: 15px 0 10px;
+      color: #fff;
+    }
+
+    .producto p {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .precio {
+      display: block;
+      margin: 10px 0;
+      font-size: 18px;
+      color: red;
+    }
+
+    .producto button {
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+    }
+
+    .producto button:hover {
+      background-color: #0077cc;
+    }
+
+    .formulario-box form,
+    .agregar-producto form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .formulario-box input,
+    .formulario-box button,
+    .agregar-producto input,
+    .agregar-producto button {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .formulario-box {
+      background-color: #000;
+      border: 2px solid #8b0000;
+      padding: 20px;
+      border-radius: 10px;
+      width: 350px;
+    }
+
+    .formularios-publicar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .empleo {
+      background-color: #111;
+      color: white;
+      padding: 20px;
+      border-left: 5px solid red;
+      border-radius: 10px;
+      width: 300px;
+      text-align: left;
+    }
+
+    .empleo button {
+      margin-top: 10px;
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .lista-servicios {
+      max-width: 800px;
+      margin: 20px auto 0;
+      list-style: none;
+      padding: 0;
+    }
+
+    .lista-servicios li {
+      background: #111;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-left: 5px solid #00aaff;
+      border-radius: 5px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <!-- ... contenido anterior ... -->
+
+  <section id="servicios" class="servicios-publicados">
+    <h2 class="titulo-seccion">Servicios publicados</h2>
+    <ul id="lista-servicios" class="lista-servicios"></ul>
+  </section>
+
+  <!-- ... contenido posterior ... -->
+</body>
+</html>
+
+  <section id="empleos" class="empleos">
+    <h2 class="titulo-seccion">Ofertas de empleo</h2>
+    <div id="lista-empleos" class="contenedor-empleos"></div>
+  </section>
+
+  <section id="publicar" class="publicar">
+    <h2 class="titulo-seccion">Publicar servicios o vacantes</h2>
+    <div class="formularios-publicar">
+      <div class="formulario-box">
+        <h3>Publicar Servicio</h3>
+        <form id="form-servicio">
+          <input type="text" id="nombre-servicio" placeholder="Nombre del servicio" required>
+          <input type="text" id="descripcion-servicio" placeholder="Descripción del servicio" required>
+          <input type="text" id="ciudad-servicio" placeholder="Ciudad o región" required>
+          <button type="submit">Publicar servicio</button>
+        </form>
+        <ul id="lista-servicios"></ul>
+      </div>
+
+      <div class="formulario-box">
+        <h3>Publicar Vacante</h3>
+        <form id="form-vacante">
+          <input type="text" id="titulo-vacante" placeholder="Título del empleo" required>
+          <input type="text" id="empresa-vacante" placeholder="Empresa" required>
+          <input type="text" id="descripcion-vacante" placeholder="Descripción del cargo" required>
+          <button type="submit">Publicar vacante</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="decor-line"></div>
+    <p>© 2025 CN Marketplace | Hecho con ❤️ en Colombia</p>
+  </footer>
+
+  <script>
+    const productos = [
+      { nombre: "Camisa personalizada", descripcion: "Diseño único en algodón premium.", precio: 75000, imagen: "https://via.placeholder.com/200x150" },
+      { nombre: "Mouse gamer RGB", descripcion: "Alta precisión, luces y ergonomía.", precio: 95000, imagen: "https://via.placeholder.com/200x150" },
+      { nombre: "Cargador rápido USB-C", descripcion: "Carga 4x más rápido para todos tus dispositivos.", precio: 39000, imagen: "https://via.placeholder.com/200x150" }
+    ];
+
+    const contenedor = document.getElementById("contenedor-productos");
+    productos.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "producto";
+      div.innerHTML = `
+        <img src="${p.imagen}" alt="${p.nombre}">
+        <h3>${p.nombre}</h3>
+        <p>${p.descripcion}</p>
+        <span class="precio">$${p.precio.toLocaleString()}</span>
+        <button>Agregar al carrito</button>
+      `;
+      contenedor.appendChild(div);
+    });
+
+    document.getElementById("formulario-producto").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nuevo = {
+        nombre: document.getElementById("nombre").value,
+        descripcion: document.getElementById("descripcion").value,
+        precio: parseFloat(document.getElementById("precio").value),
+        imagen: document.getElementById("imagen").value
+      };
+      const div = document.createElement("div");
+      div.className = "producto";
+      div.innerHTML = `
+        <img src="${nuevo.imagen}" alt="${nuevo.nombre}">
+        <h3>${nuevo.nombre}</h3>
+        <p>${nuevo.descripcion}</p>
+        <span class="precio">$${nuevo.precio.toLocaleString()}</span>
+        <button>Agregar al carrito</button>
+      `;
+      contenedor.appendChild(div);
+      this.reset();
+    });
+
+    document.getElementById("form-servicio").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre-servicio").value;
+      const descripcion = document.getElementById("descripcion-servicio").value;
+      const ciudad = document.getElementById("ciudad-servicio").value;
+      const li = document.createElement("li");
+      li.textContent = `${nombre} - ${descripcion} (${ciudad})`;
+      document.getElementById("lista-servicios").appendChild(li);
+      this.reset();
+    });
+
+    document.getElementById("form-vacante").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const titulo = document.getElementById("titulo-vacante").value;
+      const empresa = document.getElementById("empresa-vacante").value;
+      const descripcion = document.getElementById("descripcion-vacante").value;
+      const empleo = document.createElement("div");
+      empleo.className = "empleo";
+      empleo.innerHTML = `
+        <h3>${titulo}</h3>
+        <p>${descripcion}</p>
+        <small>Empresa: ${empresa}</small>
+        <button>Aplicar</button>
+      `;
+      document.getElementById("lista-empleos").appendChild(empleo);
+      this.reset();
+    });
+  </script>
+</body>
+</html>
+
