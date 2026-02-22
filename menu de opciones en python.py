@@ -33,7 +33,7 @@ while op != 5:
     print("4 Division")
 
 
-    print("SALIR DE MENU")
+    print("5 SALIR DE MENU")
     
 
     op = int(input("ingrese una opcion "))
@@ -54,26 +54,26 @@ while op != 5:
 
     if op == 1:
     
-        print(suma)
+        print("la suma es :",suma)
 
 
 
     if op == 2:
     
-     print(resta)
+     print("la resta es :",resta)
 
 
     if op == 3:
     
-        print(multiplicacion)
+        print("la multiplicacion es :",multiplicacion)
 
 
     if op == 4:
     
-        print(division)
+        print("la division es :",division)
 
 
-    else : 
+    if op == 5:
         print("saliendo")
 
 
